@@ -3,6 +3,7 @@ defmodule Issues.CLI do
   Handle command line parsing and dispatch arguments.
   """
 
+  import Issues.TableFormatter, only: [print_table_for_columns: 2]
   @default_count 4
 
   def run(argv) do
@@ -53,6 +54,7 @@ defmodule Issues.CLI do
     |> decode_response()
     |> sort_into_descending_order()
     |> last(count)
+    |> print_table_for_columns(["number", "created_at", "title"])
   end
 
   def sort_into_descending_order(list_of_issues) do
