@@ -4,9 +4,13 @@ defmodule Issues.CLI do
   """
 
   import Issues.TableFormatter, only: [print_table_for_columns: 2]
+  require Logger
+
   @default_count 4
 
   def main(argv) do
+    Logger.info("started")
+
     argv
     |> parse_args()
     |> process()
